@@ -14,6 +14,9 @@ function evaluate(firstNumber,secondNumber,operator) {
     firstNumber = parseFloat(firstNumber);
     secondNumber = parseFloat(secondNumber);
 
+    if (operator === "÷" && secondNumber === 0) {
+        return 'Division By 0 is not allowed!!!';
+    }
     switch (operator) {
         case "÷":
             return `${firstNumber / secondNumber}`
@@ -95,8 +98,9 @@ function doSecondaryOperation(Number,operator) {
             return `${1 / Number}`;
         case "+/-":
             return `${-1* Number}`;
+        case "%":
+            return `${Number/100}`;
     }
-    return ``
 }
 
 
@@ -122,3 +126,53 @@ primaryOperators.forEach(operators =>{
     })
 })
 
+
+
+const clears = document.querySelectorAll(`.clear`);
+
+clears.forEach(clear =>{
+    clear.addEventListener("click",()=>{
+        if (clear.textContent === "C") {
+            firstNumber = '0';
+            operator = '';
+            secondNumber = '';
+            
+        }
+        else if(clear.textContent === "CE"){
+            if (operator === '') {
+                firstNumber = '0';
+                
+            }
+            else{
+                if (secondNumber === '') {
+                    operator = '';
+                    
+                }
+                else{
+                    secondNumber = '';
+                    
+                }
+            }
+        }
+        else{
+            if (operator === '') {
+                if (firstNumber.length === 1) {
+                    firstNumber = '0';
+                }
+                else{
+                    firstNumber = firstNumber.slice(0,-1);
+                }
+                
+            }
+            else{
+                if (secondNumber === '') {
+                    operator = '';   
+                }
+                else{
+                    secondNumber = secondNumber.slice(0,-1); 
+                }
+            }
+        }
+        output.textContent = firstNumber + operator + secondNumber;
+    })
+})
