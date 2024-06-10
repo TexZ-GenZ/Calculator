@@ -14,18 +14,22 @@ function evaluate(firstNumber,secondNumber,operator) {
     firstNumber = parseFloat(firstNumber);
     secondNumber = parseFloat(secondNumber);
 
-    if (operator === "÷" && secondNumber === 0) {
+    if (operator === "÷" || operator === "/" && secondNumber === 0) {
         return 'Division By 0 is not allowed!!!';
     }
     switch (operator) {
         case "÷":
-            return `${firstNumber / secondNumber}`
+            return `${(firstNumber / secondNumber).toFixed(10)}`;
+        case "/":
+            return `${(firstNumber / secondNumber).toFixed(10)}`;
         case "×":
-            return `${firstNumber * secondNumber}`
+            return `${(firstNumber * secondNumber).toFixed(10)}`
+        case "*":
+            return `${(firstNumber * secondNumber).toFixed(10)}`;
         case "+":
-            return `${firstNumber + secondNumber}`
+            return `${(firstNumber + secondNumber).toFixed(10)}`
         case "-":
-            return `${firstNumber - secondNumber}`
+            return `${(firstNumber - secondNumber).toFixed(10)}`
     }
 }
 
@@ -176,3 +180,52 @@ clears.forEach(clear =>{
         output.textContent = firstNumber + operator + secondNumber;
     })
 })
+
+
+
+document.addEventListener('keydown', (event)=>{
+    const key = event.key;  
+
+     if (!isNaN(key) || key === '.') {
+        if (operator === '') {
+            if (firstNumber === '0') {
+                firstNumber = key;
+            } else {
+                firstNumber += key;
+            }
+        } else {
+            if (secondNumber === '') {
+                secondNumber = key;
+            } else {
+                secondNumber += key;
+            }
+        }
+        output.textContent = firstNumber + operator + secondNumber;
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+
+        operator = key;
+        output.textContent = firstNumber + operator + secondNumber;
+    } else if (key === 'Enter' || key === '=') {
+
+        firstNumber = evaluate(firstNumber, secondNumber, operator);
+        secondNumber = '';
+        operator = '';
+        output.textContent = firstNumber + operator + secondNumber;
+    } else if (key === 'Backspace') {
+
+        if (operator === '') {
+            if (firstNumber.length === 1) {
+                firstNumber = '0';
+            } else {
+                firstNumber = firstNumber.slice(0, -1);
+            }
+        } else {
+            if (secondNumber === '') {
+                operator = '';
+            } else {
+                secondNumber = secondNumber.slice(0, -1);
+            }
+        }
+        output.textContent = firstNumber + operator + secondNumber;
+    }
+});
