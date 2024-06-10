@@ -14,7 +14,7 @@ function evaluate(firstNumber,secondNumber,operator) {
     firstNumber = parseFloat(firstNumber);
     secondNumber = parseFloat(secondNumber);
 
-    if (operator === "÷" || operator === "/" && secondNumber === 0) {
+    if ((operator === "÷" || operator === "/") && secondNumber === 0) {
         return 'Division By 0 is not allowed!!!';
     }
     switch (operator) {
