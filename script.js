@@ -19,17 +19,17 @@ function evaluate(firstNumber,secondNumber,operator) {
     }
     switch (operator) {
         case "÷":
-            return `${(firstNumber / secondNumber).toFixed(10)}`;
+            return `${(firstNumber / secondNumber)}`;
         case "/":
-            return `${(firstNumber / secondNumber).toFixed(10)}`;
+            return `${(firstNumber / secondNumber)}`;
         case "×":
-            return `${(firstNumber * secondNumber).toFixed(10)}`
+            return `${(firstNumber * secondNumber)}`
         case "*":
-            return `${(firstNumber * secondNumber).toFixed(10)}`;
+            return `${(firstNumber * secondNumber)}`;
         case "+":
-            return `${(firstNumber + secondNumber).toFixed(10)}`
+            return `${(firstNumber + secondNumber)}`
         case "-":
-            return `${(firstNumber - secondNumber).toFixed(10)}`
+            return `${(firstNumber - secondNumber)}`
     }
 }
 
